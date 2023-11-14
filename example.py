@@ -15,5 +15,5 @@ class MyTopo( Topo ):
         self.addLink( rightSwitch, rightHost )
 
 
-#topos = { 'mytopo': ( lambda: MyTopo() ) }
-topo = MyTopo()
+topos = { 'mytopo': ( lambda: MyTopo() ) }
+
