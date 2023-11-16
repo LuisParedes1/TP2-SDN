@@ -4,8 +4,8 @@ Trabajo Practico 2 de Introduccion a Sistemas Distribuidos
 
 # Pasos
 
-1) git clone https://github.com/noxrepo/pox.git
-2) Ejecutar:  python3 pox/pox.py forwarding.l2_learning 
+Ejecutar controlador:  
+    python3 pox.py log.level --DEBUG forwarding.l2_learning controller 
 
 # Comando para ejectuar la topologia personalizada
 ## Ejecutar en otra terminal:
