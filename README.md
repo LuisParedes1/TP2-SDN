@@ -20,5 +20,37 @@ sudo mn --custom example.py --topo mytopo,n --mac --arp --switch ovsk --controll
 
 sudo mn --custom example.py --topo mytopo,n --mac --arp -x --switch ovsk --controller remote
 
+# Pruebas pedidas
+
+1) Se deben descartar todos los mensajes cuyo puerto destino sea 80.
+    - Host 4 actua como servidor escuchando en el puerto 80 
+        sudo iperf -s -p 80
+    - Host 1 actua como cliente
+        sudo iperf -c 10.0.0.1 -p 80
+    
+    * Del lado del servidor se observa lo siguiente:
+
+    ![Alt text](image-1.png)
+
+    * Del lado del cliente se observa lo siguiente:
+
+    ![Alt text](image.png)
+
+2) Se deben descartar todos los mensajes que provengan del host 1, tengan como puerto destino el 5001, y esten utilizando el protocolo UDP
+
+    * Servidor:
+
+    ![Alt text](image-3.png)
+
+    * Cliente:
+
+    ![Alt text](image-4.png)
+
+3) Se debe elegir dos hosts cualquiera, y los mismos no deben poder comunicarse de ninguna forma (se eligieron los host 2 y 3)
+
+    * Pingall:
+
+    ![Alt text](image-5.png)
+
 # Notion
 [TP2](https://mis-notas.notion.site/TP2-0c7f3987e3324e289050206e3edb01a4?pvs=4)
