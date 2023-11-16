@@ -26,7 +26,7 @@ sudo mn --custom example.py --topo mytopo,n --mac --arp -x --switch ovsk --contr
     - Host 4 actua como servidor escuchando en el puerto 80 
         sudo iperf -s -p 80
     - Host 1 actua como cliente
-        sudo iperf -c 10.0.0.1 -p 80
+        sudo iperf -c 10.0.0.4 -p 80
     
     * Del lado del servidor se observa lo siguiente:
 
@@ -34,7 +34,7 @@ sudo mn --custom example.py --topo mytopo,n --mac --arp -x --switch ovsk --contr
 
     * Del lado del cliente se observa lo siguiente:
 
-    ![Alt text](image.png)
+    ![Alt text](image-6.png)
 
 2) Se deben descartar todos los mensajes que provengan del host 1, tengan como puerto destino el 5001, y esten utilizando el protocolo UDP
 
