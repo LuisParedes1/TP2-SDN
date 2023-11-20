@@ -1,12 +1,19 @@
 from mininet.topo import Topo
+import json
 
 class MyTopo(Topo):
     def __init__(self, n_switches=1, **opts):
         super(MyTopo, self).__init__(**opts)
+        config = self.load_configuration("rules.json")
 
         if n_switches < 1:
             raise Exception("number of switches must be at least 1")
 
+        cantidad_switches_seteados = config["firewall_switch"]
+
+        if n_switches < cantidad_switches_seteados:
+            raise Exception("number of switches must be at least " + str(cantidad_switches_seteados))
+        
         h1 = self.addHost('host_1')
         h2 = self.addHost('host_2')
         h3 = self.addHost('host_3')
@@ -28,6 +35,11 @@ class MyTopo(Topo):
             self.addLink(s2, h3)
             self.addLink(s2, h4)
 
+    def load_configuration(self, config_file):
+        with open(config_file, "r") as f:
+            config = json.load(f)
+        return config
+    
 topos = {'mytopo': MyTopo}
 
 
