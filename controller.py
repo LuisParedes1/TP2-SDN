@@ -29,10 +29,10 @@ class Firewall(EventMixin) :
         if event.dpid == self.config["firewall_switch"]:
             log.debug("Firewall switch: {}".format(dpidToStr(event.dpid)))
             for rule in self.config["rules"]:
-                self.apply_rule(event, rule["rule"])
+                self.add_rule(event, rule["rule"])
                 log.debug("Rule: {} was installed on firewall switch".format(rule["name"]))
 
-    def apply_rule(self, event, rule):
+    def add_rule(self, event, rule):
         #Creo la estructura que me permite indicar los campos del header con los cual matchear
         match = of.ofp_match()
 
@@ -54,7 +54,10 @@ class Firewall(EventMixin) :
 
     def set_header_matching_parameters(match, rule):
         if "ip_type" in rule:
-            match.dl_type = pkt.ethernet.IP_TYPE if rule["ip_type"] == "ipv4" else pkt.ethernet.IPV6_TYPE
+            if rule["ip_type"] == "ipv4":
+                match.dl_type = pkt.ethernet.IP_TYPE 
+            elif rule["ip_type"] == "ipv6":
+                match.dl_type = pkt.ethernet.IPV6_TYPE
 
         if "mac_src" in rule:
             match.dl_src = EthAddr(rule["mac_src"])
