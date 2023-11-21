@@ -15,10 +15,6 @@ import json
 
 log = core.getLogger()
 
-class NetworkProtocols(Enum):
-    TCP = pkt.ipv4.TCP_PROTOCOL
-    UDP = pkt.ipv4.UDP_PROTOCOL
-
 #EventMixin -> Clase generica que levanta eventos en pox
 class Firewall(EventMixin) :
     def __init__(self):
